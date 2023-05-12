@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&family=Open+Sans:wght@400;600;700&family=Ubuntu:wght@400;500;700&display=swap');
+nav{
+    background-color: #D14D72;
+    height: 10vh;
+    box-shadow: -4px 7px 22px 0px rgba(209,77,114,1);
+}
+
+h1{
+    font-family: 'Ubuntu';
+    font-size: xx-large;
+    margin-top: 0;
+    padding-top: 2.5vh;
+    color: #FFABAB;
+    padding-left: 5vw;
+}
