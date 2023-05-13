@@ -6,7 +6,7 @@ import InputBox from "../../chatUI/inputBox/input";
 function Container(){
     const [messages, setMessages] = useState([]);
 
-    const sendMessage = (message) => {
+    const sendMessage = async (message) => {
       const userMessage = {
         type: 'sent',
         text: message.text,
@@ -17,15 +17,49 @@ function Container(){
         text: 'This is a bot response',
       };
       setMessages([...messages, userMessage, botResponse]);
-    };
+      const link = URL.createObjectURL(message.audio);
+
+
+
+  const config = {
+    responseType: 'blob'
+  };
+  axios.get(link, config)
+    .then(response => {
+      if (response.status === 200) {
+        console.log('Audio fetched as URL');
+        console.log(link);
+        // do something with the response data
+      } else {
+        console.log('Error:', response.statusText);
+      }
+    })
+    .catch(error => {
+      console.log('Error:', error);
+    });
+
+    
+    try {
+      const response = await axios.post("http://localhost:5000/api/data", {
+        audioLink: link,
+      });
+
+      if (response.status === 200) {
+        console.log("Data saved to the database");
+      } else {
+        console.log("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
+
+
+};
+
+
+
     return(
-    //     <div className={style.container}>
-    //     <div className={style.box}>
-    //        <ChatHeader contactName="UsBhai" />
-    //        <InputBox sendMessage="Hiiii" />
-          
-    //     </div>
-    // </div>
+
     <div className={style.container}>
     <div className={style.box}>
       <ChatHeader contactName="UsBhai" />
