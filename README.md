@@ -1,5 +1,3 @@
-# UsBhai
-
 # **How to start the app?**
 
 **Download or Clone the repository .**
